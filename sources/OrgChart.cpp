@@ -147,7 +147,7 @@ namespace ariel
                 }
                 else // preorder
                 {
-                    iterator::init_reverse(ptr);
+                    iterator::init_pre(ptr);
                 }
             }
         }
@@ -177,6 +177,7 @@ namespace ariel
             this->_ptr = this->_reverse.front();
         }
         else if (_order == 3 && this->_pre.back() != this->_ptr)
+      //  else if (_order == 3 && !this->_pre.empty())
         {
             this->_pre.erase(this->_pre.begin());
             this->_ptr = this->_pre.front();
@@ -259,34 +260,4 @@ namespace ariel
 
         return out;
     }
-
-    //     iterator &operator++() {
-    //     //not sure how to do this operator
-    //     // i think i will have to work with getting the index of the son somehow
-    //     //pointer_to_node = pointer_to_node->sons[0];
-    //     if (!lvl_o_que.empty() || !rvrs_stack.empty() || !pre_que.empty()) {
-    //         if (order_type == 0) {//level order
-    //             //move pointer to next
-    //             pointer_to_node = lvl_o_que.front();
-    //             lvl_o_que.pop();
-    //             //add sons of new pointer to stack
-    //             if (pointer_to_node != nullptr) {
-    //                 if (!pointer_to_node->sons.empty()) {
-    //                     for (auto &son: pointer_to_node->sons) {
-    //                         lvl_o_que.push(son);
-    //                     }
-    //                 }
-    //             }
-    //         } else if (order_type == 1) {//reverse level order
-    //             pointer_to_node = rvrs_stack.top();
-    //             rvrs_stack.pop();
-    //         } else {//preorder
-    //             pointer_to_node = pre_que.front();
-    //             pre_que.pop();
-    //         }
-    //         return *this;
-    //     }
-    //     pointer_to_node = nullptr;
-    //     return *this;
-    // }
 }

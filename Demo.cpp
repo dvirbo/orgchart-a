@@ -31,6 +31,7 @@ int main()
        |                 |
        VP_SW             VP_BI
  */
+  cout << endl;
 
   for (auto it = organization.begin_level_order(); it != organization.end_level_order(); ++it)
   {
