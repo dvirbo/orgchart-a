@@ -5,13 +5,16 @@ namespace ariel
     OrgChart::OrgChart() // default
     {
     }
+    OrgChart::~OrgChart() // default
+    {
+    }
     OrgChart::OrgChart(OrgChart &other) // deep
     {
         this->_root = other._root;
         // need to check if ned to add assigh to nullptr;
     }
 
-    OrgChart &OrgChart::operator=(OrgChart &other) // overload '=' for deep
+    OrgChart &OrgChart::operator=(OrgChart const &other) // overload '=' for deep
     {
         this->_root = other._root;
         return *this;

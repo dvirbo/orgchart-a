@@ -17,14 +17,15 @@ namespace ariel
             vector<shared_ptr<Node>> _sons;
             shared_ptr<Node> _father;
 
-            Node(string &name) : _name(name), _father() {}
+            Node(string &name) : _name(name){}
         };
         shared_ptr<Node> _root; // init the root here
 
     public:
         OrgChart();                                     // default
+        ~OrgChart();   
         OrgChart(OrgChart &other);                      // deep
-        OrgChart &operator=(OrgChart &other);           // overload '=' for deep
+        OrgChart &operator=(OrgChart const &other);           // overload '=' for deep
         OrgChart(OrgChart &&other) noexcept;            // shalow
         OrgChart &operator=(OrgChart &&other) noexcept; // overload '=' for shalow
         OrgChart &add_root(string root);
