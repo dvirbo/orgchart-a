@@ -129,7 +129,7 @@ namespace ariel
         this->_ptr = this->_pre.front();
     }
 
-    OrgChart::iterator::iterator(shared_ptr<Node> ptr, int order) : _ptr(ptr), _order(order)
+    OrgChart::iterator::iterator(shared_ptr<Node> ptr, int order) : _ptr(ptr), _order(order), _count(0)
     {
         if (this->_ptr != nullptr)
         {
@@ -166,17 +166,17 @@ namespace ariel
     OrgChart::iterator &OrgChart::iterator::operator++()
     {
 
-        if (_order == 1 && !this->_level.empty())
+        if (_order == 1 && this->_level.back() != this->_ptr)
         {
             this->_level.erase(this->_level.begin());
             this->_ptr = this->_level.front();
         }
-        else if (_order == 2 && !this->_reverse.empty())
+        else if (_order == 2 && this->_reverse.back() != this->_ptr)
         {
             this->_reverse.erase(this->_reverse.begin());
             this->_ptr = this->_reverse.front();
         }
-        else if (_order == 3 && !this->_pre.empty())
+        else if (_order == 3 && this->_pre.back() != this->_ptr)
         {
             this->_pre.erase(this->_pre.begin());
             this->_ptr = this->_pre.front();
