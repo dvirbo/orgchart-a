@@ -136,19 +136,38 @@ namespace ariel
     {
         if (this->_ptr != nullptr)
         {
-            if (!this->_ptr->_sons.empty())
+
+            if (this->_order == 1) // inorder
             {
-                if (this->_order == 1) // inorder
+                if (!this->_ptr->_sons.empty())
+                {
+                    this->_level.push_back(ptr); // push only the root
+                }
+                else
                 {
                     this->_level.push_back(ptr); // push the root
                     iterator::init_level(ptr);
                 }
-                else if (this->_order == 2) // reverse order
+            }
+            else if (this->_order == 2) // reverse order
+            {
+                if (!this->_ptr->_sons.empty())
+                {
+                    this->_reverse.push_back(ptr);// push only the root
+                }
+                else
                 {
                     this->_reverse.push_back(ptr);
                     iterator::init_reverse(ptr);
                 }
-                else // preorder
+            }
+            else // preorder
+            {
+                if (!this->_ptr->_sons.empty())
+                {
+                    this->_pre.push_back(ptr);
+                }
+                else
                 {
                     iterator::init_pre(ptr);
                 }
@@ -180,7 +199,7 @@ namespace ariel
             this->_ptr = this->_reverse.front();
         }
         else if (_order == 3 && this->_pre.back() != this->_ptr)
-      //  else if (_order == 3 && !this->_pre.empty())
+        //  else if (_order == 3 && !this->_pre.empty())
         {
             this->_pre.erase(this->_pre.begin());
             this->_ptr = this->_pre.front();
